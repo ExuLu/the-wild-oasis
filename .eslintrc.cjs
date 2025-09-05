@@ -22,6 +22,6 @@ module.exports = {
         args: 'after-used',
       },
     ],
-    'react-prop-types': [0],
+    'react/prop-types': [0],
   },
 };
