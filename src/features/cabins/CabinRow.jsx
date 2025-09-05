@@ -56,7 +56,7 @@ const CabinRow = ({ cabin }) => {
     id: cabinId,
   } = cabin;
 
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: deleteCabin,
     onSuccess: () => {
       toast.success('Cabin successfully deleted!');
@@ -75,7 +75,12 @@ const CabinRow = ({ cabin }) => {
       <div>Fits up to {maxCapacity} guests</div>
       <Price>{formatCurrency(regularPrice)}</Price>
       <Discount>{formatCurrency(discount)}</Discount>
-      <Button size='small' variation='danger' onClick={() => mutate(cabinId)}>
+      <Button
+        disabled={isPending}
+        size='small'
+        variation='danger'
+        onClick={() => mutate(cabinId)}
+      >
         Delete
       </Button>
     </TableRow>
