@@ -115,7 +115,6 @@ function CreateCabinForm({ cabinToEdit = {} }) {
         error={errors?.description?.message}
       >
         <Textarea
-          disabled={isWorking}
           type='number'
           id='description'
           defaultValue=''
