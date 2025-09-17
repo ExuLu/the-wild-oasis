@@ -76,32 +76,32 @@ const CabinRow = ({ cabin }) => {
           <span>&mdash;</span>
         )}
         <div>
-          {/* <Button
-            disabled={isCreating}
-            onClick={handleDuplicate}
-            variation='secondary'
-            size='small'
-          >
-            <HiSquare2Stack />
-          </Button> */}
+          <Modal>
+            <Menus.Menu>
+              <Menus.Toggle id={cabinId} />
 
-          {/* <Modal>
-            <Modal.Open opens='cabin-edit-form'>
-              <Button size='small'>
-                <HiPencil />
-              </Button>
-            </Modal.Open>
+              <Menus.List id={cabinId}>
+                <Menus.Button
+                  icon={<HiSquare2Stack />}
+                  onClick={handleDuplicate}
+                >
+                  Duplicate
+                </Menus.Button>
+
+                <Modal.Open opens='cabin-edit-form'>
+                  <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
+                </Modal.Open>
+
+                <Modal.Open opens='confirm-delete'>
+                  <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
+                </Modal.Open>
+              </Menus.List>
+            </Menus.Menu>
+
             <Modal.Window name='cabin-edit-form'>
               <CreateCabinForm cabinToEdit={cabin} />
             </Modal.Window>
-          </Modal> */}
 
-          {/* <Modal>
-            <Modal.Open opens='confirm-delete'>
-              <Button size='small' variation='danger'>
-                <HiTrash />
-              </Button>
-            </Modal.Open>
             <Modal.Window name='confirm-delete'>
               <ConfirmDelete
                 resourceName='cabin'
@@ -109,17 +109,7 @@ const CabinRow = ({ cabin }) => {
                 onConfirm={() => deleteCabin(cabinId)}
               />
             </Modal.Window>
-          </Modal> */}
-
-          <Menus.Menu>
-            <Menus.Toggle id={cabinId} />
-
-            <Menus.List id={cabinId}>
-              <Menus.Button>Duplicate</Menus.Button>
-              <Menus.Button>Edit</Menus.Button>
-              <Menus.Button>Delete</Menus.Button>
-            </Menus.List>
-          </Menus.Menu>
+          </Modal>
         </div>
       </Table.Row>
     </>

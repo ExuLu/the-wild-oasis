@@ -72,7 +72,6 @@ const Table = ({ columns, children }) => {
 
 const Header = ({ children }) => {
   const { columns } = useContext(TableContext);
-  console.log(columns);
 
   return (
     <StyledHeader as='header' role='row' columns={columns}>

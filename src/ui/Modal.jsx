@@ -59,7 +59,7 @@ const Modal = ({ children }) => {
   const [openName, setOpenName] = useState('');
 
   const close = () => setOpenName('');
-  const open = (opensWindowName) => setOpenName(opensWindowName);
+  const open = setOpenName;
 
   return (
     <ModalContext.Provider value={{ openName, close, open }}>
@@ -76,13 +76,13 @@ const Open = ({ children, opens: opensWindowName }) => {
 
 const Window = ({ children, name }) => {
   const { openName, close } = useContext(ModalContext);
-  const { modalRef } = useOutsideClick({ handler: close });
+  const { ref } = useOutsideClick(close);
 
   if (name !== openName) return null;
 
   return createPortal(
     <Overlay>
-      <StyledModal ref={modalRef}>
+      <StyledModal ref={ref}>
         <Button onClick={close}>
           <HiXMark />
         </Button>
