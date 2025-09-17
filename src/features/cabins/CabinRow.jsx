@@ -9,6 +9,7 @@ import { useCreateCabin } from './useCreateCabin';
 import Modal from '../../ui/Modal';
 import ConfirmDelete from '../../ui/ConfirmDelete';
 import Table from '../../ui/Table';
+import Menus from '../../ui/Menus';
 
 const Img = styled.img`
   display: block;
@@ -75,16 +76,16 @@ const CabinRow = ({ cabin }) => {
           <span>&mdash;</span>
         )}
         <div>
-          <Button
+          {/* <Button
             disabled={isCreating}
             onClick={handleDuplicate}
             variation='secondary'
             size='small'
           >
             <HiSquare2Stack />
-          </Button>
+          </Button> */}
 
-          <Modal>
+          {/* <Modal>
             <Modal.Open opens='cabin-edit-form'>
               <Button size='small'>
                 <HiPencil />
@@ -93,9 +94,9 @@ const CabinRow = ({ cabin }) => {
             <Modal.Window name='cabin-edit-form'>
               <CreateCabinForm cabinToEdit={cabin} />
             </Modal.Window>
-          </Modal>
+          </Modal> */}
 
-          <Modal>
+          {/* <Modal>
             <Modal.Open opens='confirm-delete'>
               <Button size='small' variation='danger'>
                 <HiTrash />
@@ -108,7 +109,17 @@ const CabinRow = ({ cabin }) => {
                 onConfirm={() => deleteCabin(cabinId)}
               />
             </Modal.Window>
-          </Modal>
+          </Modal> */}
+
+          <Menus.Menu>
+            <Menus.Toggle id={cabinId} />
+
+            <Menus.List id={cabinId}>
+              <Menus.Button>Duplicate</Menus.Button>
+              <Menus.Button>Edit</Menus.Button>
+              <Menus.Button>Delete</Menus.Button>
+            </Menus.List>
+          </Menus.Menu>
         </div>
       </Table.Row>
     </>
