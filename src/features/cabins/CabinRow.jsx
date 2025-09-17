@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import Button from '../../ui/Button';
 import CreateCabinForm from './CreateCabinForm';
 import { useDeleteCabin } from './useDeleteCabin';
@@ -8,6 +6,7 @@ import { formatCurrency } from '../../utils/helpers';
 import styled from 'styled-components';
 import { HiPencil, HiSquare2Stack, HiTrash } from 'react-icons/hi2';
 import { useCreateCabin } from './useCreateCabin';
+import Modal from '../../ui/Modal';
 
 const TableRow = styled.div`
   display: grid;
@@ -49,7 +48,6 @@ const Discount = styled.div`
 `;
 
 const CabinRow = ({ cabin }) => {
-  const [showForm, setShowForm] = useState(false);
   const { deleteCabin, isDeleting } = useDeleteCabin();
   const { isCreating, createCabin } = useCreateCabin();
 
@@ -95,9 +93,18 @@ const CabinRow = ({ cabin }) => {
           >
             <HiSquare2Stack />
           </Button>
-          <Button onClick={() => setShowForm((show) => !show)} size='small'>
-            <HiPencil />
-          </Button>
+
+          <Modal>
+            <Modal.Open opens='cabin-edit-form'>
+              <Button size='small'>
+                <HiPencil />
+              </Button>
+            </Modal.Open>
+            <Modal.Window name='cabin-edit-form'>
+              <CreateCabinForm cabinToEdit={cabin} />
+            </Modal.Window>
+          </Modal>
+
           <Button
             disabled={isDeleting}
             size='small'
@@ -108,7 +115,6 @@ const CabinRow = ({ cabin }) => {
           </Button>
         </div>
       </TableRow>
-      {showForm && <CreateCabinForm cabinToEdit={cabin} />}
     </>
   );
 };
