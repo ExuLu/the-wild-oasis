@@ -1,4 +1,3 @@
-import Button from '../../ui/Button';
 import CreateCabinForm from './CreateCabinForm';
 import { useDeleteCabin } from './useDeleteCabin';
 import { formatCurrency } from '../../utils/helpers';
@@ -40,7 +39,7 @@ const Discount = styled.div`
 
 const CabinRow = ({ cabin }) => {
   const { deleteCabin, isDeleting } = useDeleteCabin();
-  const { isCreating, createCabin } = useCreateCabin();
+  const { createCabin } = useCreateCabin();
 
   const {
     image,
