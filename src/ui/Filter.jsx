@@ -38,6 +38,7 @@ const FilterButton = styled.button`
 const Filter = ({ filterField, options }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const handleClick = (value) => {
+    searchParams.set('page', 1);
     searchParams.set(filterField, value);
     setSearchParams(searchParams);
   };
