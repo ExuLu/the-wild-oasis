@@ -5,18 +5,31 @@ import Input from '../../ui/Input';
 import FormRowVertical from '../../ui/FormRowVertical';
 import { useLogin } from './useLogin';
 import SpinnerMini from '../../ui/SpinnerMini';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
   const [email, setEmail] = useState('alena@example.com');
   const [password, setPassword] = useState('1234567890');
   const { login, isPending } = useLogin();
+  const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
 
     if (!email || !password) return;
 
-    login({ email, password });
+    login(
+      { email, password },
+      {
+        onSettled: () => {
+          setEmail('');
+          setPassword('');
+        },
+        onSuccess: () => {
+          navigate('/');
+        },
+      }
+    );
   }
 
   return (
