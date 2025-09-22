@@ -51,44 +51,45 @@ function BookingDetail() {
       </Row>
 
       <BookingDataBox booking={booking} />
-      <Modal>
-        <ButtonGroup>
+      <ButtonGroup>
+        {status === 'unconfirmed' && (
+          <Button onClick={() => navigate(`/checkin/${bookingId}`)}>
+            <span>Check in</span>
+          </Button>
+        )}
+
+        {status === 'checked-in' && (
+          <Button
+            disabled={isCheckingOut}
+            onClick={() => {
+              checkout(bookingId);
+            }}
+          >
+            <span>Check out</span>
+          </Button>
+        )}
+
+        <Modal>
           <Modal.Open opens='booking-delete'>
             <Button disabled={isDeleting} variation='danger'>
-              Delete
+              Delete booking
             </Button>
           </Modal.Open>
-          {status === 'unconfirmed' && (
-            <Button onClick={() => navigate(`/checkin/${bookingId}`)}>
-              <span>Check in</span>
-            </Button>
-          )}
-          {status === 'checked-in' && (
-            <Button
-              disabled={isCheckingOut}
-              onClick={() => {
-                checkout(bookingId);
+          <Modal.Window name='booking-delete'>
+            <ConfirmDelete
+              resourceName='booking'
+              disabled={isDeleting}
+              onConfirm={() => {
+                deleteBooking(bookingId, { onSettled: () => navigate(-1) });
               }}
-            >
-              <span>Check out</span>
-            </Button>
-          )}
-          <Button variation='secondary' onClick={moveBack}>
-            Back
-          </Button>
-        </ButtonGroup>
+            />
+          </Modal.Window>
+        </Modal>
 
-        <Modal.Window name='booking-delete'>
-          <ConfirmDelete
-            resourceName='booking'
-            disabled={isDeleting}
-            onConfirm={() => {
-              deleteBooking(bookingId);
-              navigate('/');
-            }}
-          />
-        </Modal.Window>
-      </Modal>
+        <Button variation='secondary' onClick={moveBack}>
+          Back
+        </Button>
+      </ButtonGroup>
     </>
   );
 }
