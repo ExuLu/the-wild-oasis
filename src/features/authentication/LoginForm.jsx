@@ -26,7 +26,7 @@ function LoginForm() {
           setPassword('');
         },
         onSuccess: () => {
-          navigate('/');
+          navigate('/dashboard', { replace: true });
         },
       }
     );
