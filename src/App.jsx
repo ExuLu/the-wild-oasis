@@ -1,22 +1,25 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-
-import GlobalStyles from './styles/GlobalStyles';
-import Dashboard from './pages/Dashboard';
-import Account from './pages/Account';
-import Bookings from './pages/Bookings';
-import Cabins from './pages/Cabins';
-import Users from './pages/Users';
-import Settings from './pages/Settings';
-import Login from './pages/Login';
-import PageNotFound from './pages/PageNotFound';
-import AppLayout from './ui/AppLayout';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Toaster } from 'react-hot-toast';
+
+import Account from './pages/Account';
 import Booking from './pages/Booking';
+import Bookings from './pages/Bookings';
+import Cabins from './pages/Cabins';
 import Checkin from './pages/Checkin';
+import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
+import PageNotFound from './pages/PageNotFound';
+import Settings from './pages/Settings';
+import Users from './pages/Users';
+
+import AppLayout from './ui/AppLayout';
 import ProtectedRoute from './ui/ProtectedRoute';
+
 import { DarkModeProvider } from './context/DarkModeContext';
+
+import GlobalStyles from './styles/GlobalStyles';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -41,34 +44,34 @@ const App = () => {
                 </ProtectedRoute>
               }
             >
-              <Route index element={<Navigate replace to='dashboard' />} />
-              <Route path='dashboard' element={<Dashboard />} />
-              <Route path='bookings/:bookingId' element={<Booking />} />
-              <Route path='checkin/:bookingId' element={<Checkin />} />
-              <Route path='bookings' element={<Bookings />} />
-              <Route path='cabins' element={<Cabins />} />
-              <Route path='users' element={<Users />} />
-              <Route path='settings' element={<Settings />} />
-              <Route path='account' element={<Account />} />
+              <Route element={<Navigate replace to='dashboard' />} index />
+              <Route element={<Dashboard />} path='dashboard' />
+              <Route element={<Booking />} path='bookings/:bookingId' />
+              <Route element={<Checkin />} path='checkin/:bookingId' />
+              <Route element={<Bookings />} path='bookings' />
+              <Route element={<Cabins />} path='cabins' />
+              <Route element={<Users />} path='users' />
+              <Route element={<Settings />} path='settings' />
+              <Route element={<Account />} path='account' />
             </Route>
-            <Route path='login' element={<Login />} />
-            <Route path='*' element={<PageNotFound />} />
+            <Route element={<Login />} path='login' />
+            <Route element={<PageNotFound />} path='*' />
           </Routes>
         </BrowserRouter>
         <Toaster
-          position='top-center'
-          gutter={12}
           containerStyle={{ margin: '8px' }}
+          gutter={12}
+          position='top-center'
           toastOptions={{
-            success: { duration: 3000 },
             error: { duration: 5000 },
             style: {
+              backgroundColor: 'var(--color-grey-zero)',
+              color: 'var(--color-grey-700)',
               fontSize: '16px',
               maxWidth: '500px',
               padding: '16px 24px',
-              backgroundColor: 'var(--color-grey-zero)',
-              color: 'var(--color-grey-700)',
             },
+            success: { duration: 3000 },
           }}
         />
       </QueryClientProvider>
