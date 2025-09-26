@@ -1,9 +1,10 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { login as loginAPI } from '../../services/apiAuth';
-import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
-export function useLogin() {
+import { login as loginAPI } from '../../services/apiAuth';
+
+export const useLogin = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
@@ -19,5 +20,5 @@ export function useLogin() {
     },
   });
 
-  return { login, isPending };
-}
+  return { isPending, login };
+};

@@ -1,14 +1,6 @@
-import styled from 'styled-components';
 import { useUser } from './useUser';
 
-const StyledUserAvatar = styled.div`
-  display: flex;
-  gap: 1.2rem;
-  align-items: center;
-  font-weight: 500;
-  font-size: 1.4rem;
-  color: var(--color-grey-600);
-`;
+import styled from 'styled-components';
 
 const Avatar = styled.img`
   display: block;
@@ -21,6 +13,15 @@ const Avatar = styled.img`
   outline: 2px solid var(--color-grey-100);
 `;
 
+const StyledUserAvatar = styled.div`
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: var(--color-grey-600);
+`;
+
 const UserAvatar = () => {
   const { user } = useUser();
   const { fullName, avatar } = user.user_metadata;
@@ -28,8 +29,8 @@ const UserAvatar = () => {
   return (
     <StyledUserAvatar>
       <Avatar
-        src={avatar || 'default-user.jpg'}
         alt={`Avatar of ${fullName}`}
+        src={avatar || 'default-user.jpg'}
       />
       <span>{fullName}</span>
     </StyledUserAvatar>

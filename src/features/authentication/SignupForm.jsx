@@ -1,16 +1,16 @@
 import { useForm } from 'react-hook-form';
+
 import Button from '../../ui/Button';
 import Form from '../../ui/Form';
 import FormRow from '../../ui/FormRow';
 import Input from '../../ui/Input';
+
 import { useSignup } from './useSignup';
 
-// Email regex: /\S+@\S+\.\S+/
-
-function SignupForm() {
-  const { register, formState, getValues, handleSubmit, reset } = useForm();
+const SignupForm = () => {
+  const { formState, getValues, handleSubmit, register, reset } = useForm();
   const { errors } = formState;
-  const { signup, isPending } = useSignup();
+  const { isPending, signup } = useSignup();
 
   const onSubmit = ({ fullName, email, password }) => {
     signup({ fullName, email, password }, { onSettled: reset });
@@ -18,20 +18,20 @@ function SignupForm() {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormRow label='Full name' error={errors?.fullName?.message}>
+      <FormRow error={errors?.fullName?.message} label='Full name'>
         <Input
           disabled={isPending}
-          type='text'
           id='fullName'
+          type='text'
           {...register('fullName', { required: 'This field is required' })}
         />
       </FormRow>
 
-      <FormRow label='Email address' error={errors?.email?.message}>
+      <FormRow error={errors?.email?.message} label='Email address'>
         <Input
+          id='email'
           disabled={isPending}
           type='email'
-          id='email'
           {...register('email', {
             required: 'This field is required',
             pattern: {
@@ -43,13 +43,13 @@ function SignupForm() {
       </FormRow>
 
       <FormRow
-        label='Password (min 8 characters)'
         error={errors?.password?.message}
+        label='Password (min 8 characters)'
       >
         <Input
           disabled={isPending}
-          type='password'
           id='password'
+          type='password'
           {...register('password', {
             required: 'This field is required',
             minLength: {
@@ -60,11 +60,11 @@ function SignupForm() {
         />
       </FormRow>
 
-      <FormRow label='Repeat password' error={errors?.passwordConfirm?.message}>
+      <FormRow error={errors?.passwordConfirm?.message} label='Repeat password'>
         <Input
+          id='passwordConfirm'
           disabled={isPending}
           type='password'
-          id='passwordConfirm'
           {...register('passwordConfirm', {
             required: 'This field is required',
             validate: (value) =>
@@ -78,8 +78,8 @@ function SignupForm() {
         <Button
           disabled={isPending}
           onClick={reset}
-          variation='secondary'
           type='reset'
+          variation='secondary'
         >
           Cancel
         </Button>
@@ -87,6 +87,6 @@ function SignupForm() {
       </FormRow>
     </Form>
   );
-}
+};
 
 export default SignupForm;
