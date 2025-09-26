@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 
 import { deleteBooking as deleteBookingAPI } from '../../services/apiBookings';
 
-export function useDeleteBooking() {
+export const useDeleteBooking = () => {
   const queryClient = useQueryClient();
 
   const { mutate: deleteBooking, isPending: isDeleting } = useMutation({
@@ -19,4 +19,4 @@ export function useDeleteBooking() {
   });
 
   return { deleteBooking, isDeleting };
-}
+};

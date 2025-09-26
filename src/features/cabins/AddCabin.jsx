@@ -1,6 +1,7 @@
+import CreateCabinForm from './CreateCabinForm';
+
 import Button from '../../ui/Button';
 import Modal from '../../ui/Modal';
-import CreateCabinForm from './CreateCabinForm';
 
 const AddCabin = () => {
   return (

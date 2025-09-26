@@ -1,14 +1,31 @@
+import { HiPencil, HiSquare2Stack, HiTrash } from 'react-icons/hi2';
+
 import CreateCabinForm from './CreateCabinForm';
+
+import ConfirmDelete from '../../ui/ConfirmDelete';
+import Modal from '../../ui/Modal';
+import Menus from '../../ui/Menus';
+import Table from '../../ui/Table';
+
 import { useDeleteCabin } from './useDeleteCabin';
+import { useCreateCabin } from './useCreateCabin';
+
 import { formatCurrency } from '../../utils/helpers';
 
 import styled from 'styled-components';
-import { HiPencil, HiSquare2Stack, HiTrash } from 'react-icons/hi2';
-import { useCreateCabin } from './useCreateCabin';
-import Modal from '../../ui/Modal';
-import ConfirmDelete from '../../ui/ConfirmDelete';
-import Table from '../../ui/Table';
-import Menus from '../../ui/Menus';
+
+const Cabin = styled.div`
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--color-grey-600);
+  font-family: 'Sono';
+`;
+
+const Discount = styled.div`
+  font-family: 'Sono';
+  font-weight: 500;
+  color: var(--color-green-700);
+`;
 
 const Img = styled.img`
   display: block;
@@ -19,48 +36,35 @@ const Img = styled.img`
   transform: scale(1.5) translateX(-7px);
 `;
 
-const Cabin = styled.div`
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: var(--color-grey-600);
-  font-family: 'Sono';
-`;
-
 const Price = styled.div`
   font-family: 'Sono';
   font-weight: 600;
 `;
 
-const Discount = styled.div`
-  font-family: 'Sono';
-  font-weight: 500;
-  color: var(--color-green-700);
-`;
-
 const CabinRow = ({ cabin }) => {
-  const { deleteCabin, isDeleting } = useDeleteCabin();
   const { createCabin } = useCreateCabin();
+  const { deleteCabin, isDeleting } = useDeleteCabin();
 
   const {
-    image,
-    name,
-    maxCapacity,
-    regularPrice,
     discount,
-    id: cabinId,
     description,
+    id: cabinId,
+    image,
+    maxCapacity,
+    name,
+    regularPrice,
   } = cabin;
 
-  function handleDuplicate() {
+  const handleDuplicate = () => {
     createCabin({
-      name: `Copy of ${name}`,
-      maxCapacity,
-      image,
-      regularPrice,
-      discount,
       description,
+      discount,
+      image,
+      maxCapacity,
+      name: `Copy of ${name}`,
+      regularPrice,
     });
-  }
+  };
 
   return (
     <>
@@ -103,9 +107,9 @@ const CabinRow = ({ cabin }) => {
 
             <Modal.Window name='confirm-delete'>
               <ConfirmDelete
-                resourceName='cabin'
                 disabled={isDeleting}
                 onConfirm={() => deleteCabin(cabinId)}
+                resourceName='cabin'
               />
             </Modal.Window>
           </Modal>
