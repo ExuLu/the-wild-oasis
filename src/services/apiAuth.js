@@ -1,20 +1,23 @@
 import supabase from './supabase';
+
 import { supabaseUrl } from '../services/supabase';
 
-export async function login({ email, password }) {
+export const login = async ({ email, password }) => {
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
 
   if (error) {
+    console.error(error);
+
     throw new Error(error.message);
   }
 
   return data;
-}
+};
 
-export async function getCurrentUser() {
+export const getCurrentUser = async () => {
   const { data: session } = await supabase.auth.getSession();
 
   if (!session.session) return null;
@@ -22,21 +25,25 @@ export async function getCurrentUser() {
   const { data, error } = await supabase.auth.getUser();
 
   if (error) {
+    console.error(error);
+
     throw new Error(error.message);
   }
 
   return data?.user;
-}
+};
 
-export async function logout() {
+export const logout = async () => {
   const { error } = await supabase.auth.signOut();
 
   if (error) {
+    console.error(error);
+
     throw new Error(error.message);
   }
-}
+};
 
-export async function signup({ fullName, email, password }) {
+export const signup = async ({ fullName, email, password }) => {
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
@@ -44,13 +51,15 @@ export async function signup({ fullName, email, password }) {
   });
 
   if (error) {
+    console.error(error);
+
     throw new Error(error.message);
   }
 
   return data;
-}
+};
 
-export async function updateCurrentUser({ password, fullName, avatar }) {
+export const updateCurrentUser = async ({ password, fullName, avatar }) => {
   let updateData;
 
   if (password) updateData = { password };
@@ -59,6 +68,8 @@ export async function updateCurrentUser({ password, fullName, avatar }) {
   const { data, error } = await supabase.auth.updateUser(updateData);
 
   if (error) {
+    console.error(error);
+
     throw new Error(error.message);
   }
 
@@ -71,6 +82,8 @@ export async function updateCurrentUser({ password, fullName, avatar }) {
     .upload(fileName, avatar);
 
   if (imageUploadError) {
+    console.error(imageUploadError);
+
     throw new Error(imageUploadError.message);
   }
 
@@ -82,8 +95,10 @@ export async function updateCurrentUser({ password, fullName, avatar }) {
     });
 
   if (imageUpdateError) {
+    console.error(imageUpdateError);
+
     throw new Error(imageUpdateError.message);
   }
 
   return updatedUser;
-}
+};
