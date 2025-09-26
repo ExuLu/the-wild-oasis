@@ -1,7 +1,7 @@
 import supabase from './supabase';
 
 import { getToday } from '../utils/helpers';
-import { PAGE_SIZE } from '../utils/globalContstants';
+import { PAGE_SIZE } from '../utils/globalConstants';
 
 export const getBookings = async ({ filter, sortBy, page }) => {
   let query = supabase

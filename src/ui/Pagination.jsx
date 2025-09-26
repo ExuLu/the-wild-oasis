@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
 
-import { PAGE_SIZE } from '../utils/globalContstants';
+import { PAGE_SIZE } from '../utils/globalConstants';
 
 import styled from 'styled-components';
 
