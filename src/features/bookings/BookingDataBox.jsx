@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import { format, isToday } from 'date-fns';
 import {
   HiOutlineChatBubbleBottomCenterText,
@@ -12,13 +11,26 @@ import { Flag } from '../../ui/Flag';
 
 import { formatDistanceFromNow, formatCurrency } from '../../utils/helpers';
 
-const StyledBookingDataBox = styled.section`
-  /* Box */
-  background-color: var(--color-grey-0);
-  border: 1px solid var(--color-grey-100);
-  border-radius: var(--border-radius-md);
+import styled from 'styled-components';
 
-  overflow: hidden;
+const Footer = styled.footer`
+  padding: 1.6rem 4rem;
+  font-size: 1.2rem;
+  color: var(--color-grey-500);
+  text-align: right;
+`;
+
+const Guest = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1.6rem;
+  color: var(--color-grey-500);
+
+  & p:first-of-type {
+    font-weight: 500;
+    color: var(--color-grey-700);
+  }
 `;
 
 const Header = styled.header`
@@ -51,23 +63,6 @@ const Header = styled.header`
   }
 `;
 
-const Section = styled.section`
-  padding: 3.2rem 4rem 1.2rem;
-`;
-
-const Guest = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-  margin-bottom: 1.6rem;
-  color: var(--color-grey-500);
-
-  & p:first-of-type {
-    font-weight: 500;
-    color: var(--color-grey-700);
-  }
-`;
-
 const Price = styled.div`
   display: flex;
   align-items: center;
@@ -94,29 +89,35 @@ const Price = styled.div`
   }
 `;
 
-const Footer = styled.footer`
-  padding: 1.6rem 4rem;
-  font-size: 1.2rem;
-  color: var(--color-grey-500);
-  text-align: right;
+const Section = styled.section`
+  padding: 3.2rem 4rem 1.2rem;
+`;
+
+const StyledBookingDataBox = styled.section`
+  /* Box */
+  background-color: var(--color-grey-0);
+  border: 1px solid var(--color-grey-100);
+  border-radius: var(--border-radius-md);
+
+  overflow: hidden;
 `;
 
 // A purely presentational component
-function BookingDataBox({ booking }) {
+const BookingDataBox = ({ booking }) => {
   const {
+    cabins: { name: cabinName },
+    cabinPrice,
     created_at,
-    startDate,
     endDate,
+    extraPrice,
+    guests: { fullName: guestName, email, country, countryFlag, nationalID },
+    hasBreakfast,
+    isPaid,
     numNights,
     numGuests,
-    cabinPrice,
-    extraPrice,
-    totalPrice,
-    hasBreakfast,
     observations,
-    isPaid,
-    guests: { fullName: guestName, email, country, countryFlag, nationalID },
-    cabins: { name: cabinName },
+    startDate,
+    totalPrice,
   } = booking;
 
   return (
@@ -182,6 +183,6 @@ function BookingDataBox({ booking }) {
       </Footer>
     </StyledBookingDataBox>
   );
-}
+};
 
 export default BookingDataBox;

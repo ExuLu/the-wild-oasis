@@ -9,13 +9,13 @@ import { useUpdateUser } from './useUpdateUser';
 
 const UpdatePasswordForm = () => {
   const { formState, getValues, handleSubmit, register, reset } = useForm();
-  const { errors } = formState;
-
   const { isUpdating, updateUser } = useUpdateUser();
 
-  function onSubmit({ password }) {
+  const { errors } = formState;
+
+  const onSubmit = ({ password }) => {
     updateUser({ password }, { onSuccess: reset });
-  }
+  };
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>

@@ -5,8 +5,8 @@ import toast from 'react-hot-toast';
 import { login as loginAPI } from '../../services/apiAuth';
 
 export const useLogin = () => {
-  const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const { mutate: login, isPending } = useMutation({
     mutationFn: ({ email, password }) => loginAPI({ email, password }),

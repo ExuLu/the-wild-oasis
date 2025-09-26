@@ -9,11 +9,11 @@ import SpinnerMini from '../../ui/SpinnerMini';
 import { useLogin } from './useLogin';
 
 const LoginForm = () => {
+  const { isPending, login } = useLogin();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { isPending, login } = useLogin();
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!email || !password) return;
@@ -27,7 +27,7 @@ const LoginForm = () => {
         },
       }
     );
-  }
+  };
 
   return (
     <Form onSubmit={handleSubmit}>

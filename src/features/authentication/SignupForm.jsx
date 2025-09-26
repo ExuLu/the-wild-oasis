@@ -9,8 +9,9 @@ import { useSignup } from './useSignup';
 
 const SignupForm = () => {
   const { formState, getValues, handleSubmit, register, reset } = useForm();
-  const { errors } = formState;
   const { isPending, signup } = useSignup();
+
+  const { errors } = formState;
 
   const onSubmit = ({ fullName, email, password }) => {
     signup({ fullName, email, password }, { onSettled: reset });

@@ -1,22 +1,22 @@
-import styled from 'styled-components';
-
 import BookingDataBox from './BookingDataBox';
-import Row from '../../ui/Row';
-import Heading from '../../ui/Heading';
-import Tag from '../../ui/Tag';
-import ButtonGroup from '../../ui/ButtonGroup';
 import Button from '../../ui/Button';
+import ButtonGroup from '../../ui/ButtonGroup';
 import ButtonText from '../../ui/ButtonText';
-
-import { useMoveBack } from '../../hooks/useMoveBack';
-import { useBooking } from './useBooking';
-import Spinner from '../../ui/Spinner';
-import { useNavigate } from 'react-router-dom';
-import { useCheckout } from '../check-in-out/useCheckout';
-import { useDeleteBooking } from './useDeleteBooking';
-import Modal from '../../ui/Modal';
 import ConfirmDelete from '../../ui/ConfirmDelete';
 import Empty from '../../ui/Empty';
+import Heading from '../../ui/Heading';
+import Modal from '../../ui/Modal';
+import Row from '../../ui/Row';
+import Spinner from '../../ui/Spinner';
+import Tag from '../../ui/Tag';
+
+import { useBooking } from './useBooking';
+import { useCheckout } from '../check-in-out/useCheckout';
+import { useDeleteBooking } from './useDeleteBooking';
+import { useMoveBack } from '../../hooks/useMoveBack';
+import { useNavigate } from 'react-router-dom';
+
+import styled from 'styled-components';
 
 const HeadingGroup = styled.div`
   display: flex;
@@ -24,13 +24,12 @@ const HeadingGroup = styled.div`
   align-items: center;
 `;
 
-function BookingDetail() {
-  const navigate = useNavigate();
+const BookingDetail = () => {
   const { booking, isLoading } = useBooking();
   const { checkout, isCheckingOut } = useCheckout();
   const { deleteBooking, isDeleting } = useDeleteBooking();
-
   const moveBack = useMoveBack();
+  const navigate = useNavigate();
 
   const statusToTagName = {
     unconfirmed: 'blue',
@@ -39,9 +38,10 @@ function BookingDetail() {
   };
 
   if (isLoading) return <Spinner />;
+
   if (!booking.id) return <Empty resource='booking' />;
 
-  const { status, id: bookingId } = booking;
+  const { id: bookingId, status } = booking;
 
   return (
     <>
@@ -80,21 +80,21 @@ function BookingDetail() {
           </Modal.Open>
           <Modal.Window name='booking-delete'>
             <ConfirmDelete
-              resourceName='booking'
               disabled={isDeleting}
               onConfirm={() => {
                 deleteBooking(bookingId, { onSettled: () => navigate(-1) });
               }}
+              resourceName='booking'
             />
           </Modal.Window>
         </Modal>
 
-        <Button variation='secondary' onClick={moveBack}>
+        <Button onClick={moveBack} variation='secondary'>
           Back
         </Button>
       </ButtonGroup>
     </>
   );
-}
+};
 
 export default BookingDetail;
