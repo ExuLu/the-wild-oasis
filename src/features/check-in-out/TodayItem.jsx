@@ -1,9 +1,15 @@
-import styled from 'styled-components';
-import Tag from '../../ui/Tag';
-import { Flag } from '../../ui/Flag';
-import Button from '../../ui/Button';
 import { Link } from 'react-router-dom';
+
 import CheckoutButton from './CheckoutButton';
+import Button from '../../ui/Button';
+import { Flag } from '../../ui/Flag';
+import Tag from '../../ui/Tag';
+
+import styled from 'styled-components';
+
+const Guest = styled.div`
+  font-weight: 500;
+`;
 
 const StyledTodayItem = styled.li`
   display: grid;
@@ -20,27 +26,23 @@ const StyledTodayItem = styled.li`
   }
 `;
 
-const Guest = styled.div`
-  font-weight: 500;
-`;
-
 const TodayItem = ({ activity }) => {
-  const { id, status, guests, numNights } = activity;
+  const { id, guests, numNights, status } = activity;
 
   return (
     <StyledTodayItem>
       {status === 'unconfirmed' && <Tag type='green'>Arriving</Tag>}
       {status === 'checked-in' && <Tag type='blue'>Departing</Tag>}
 
-      <Flag src={guests.countryFlag} alt={`Flag of ${guests.country}`} />
+      <Flag alt={`Flag of ${guests.country}`} src={guests.countryFlag} />
       <Guest>{guests.fullName}</Guest>
       <div>{numNights}</div>
 
       {status === 'unconfirmed' && (
         <Button
           as={Link}
-          to={`/checkin/${id}`}
           size='small'
+          to={`/checkin/${id}`}
           variation='primary'
         >
           Check in

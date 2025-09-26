@@ -1,10 +1,18 @@
-import styled from 'styled-components';
-
 import Heading from '../../ui/Heading';
 import Row from '../../ui/Row';
-import { useTodayActivity } from './useTodayActivity';
 import Spinner from '../../ui/Spinner';
 import TodayItem from './TodayItem';
+
+import { useTodayActivity } from './useTodayActivity';
+
+import styled from 'styled-components';
+
+const NoActivity = styled.p`
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-top: 0.8rem;
+`;
 
 const StyledToday = styled.div`
   /* Box */
@@ -32,15 +40,8 @@ const TodayList = styled.ul`
   -ms-overflow-style: none;
 `;
 
-const NoActivity = styled.p`
-  text-align: center;
-  font-size: 1.8rem;
-  font-weight: 500;
-  margin-top: 0.8rem;
-`;
-
-function TodayActivity() {
-  const { isLoading, activities } = useTodayActivity();
+const TodayActivity = () => {
+  const { activities, isLoading } = useTodayActivity();
 
   return (
     <StyledToday>
@@ -63,6 +64,6 @@ function TodayActivity() {
       )}
     </StyledToday>
   );
-}
+};
 
 export default TodayActivity;
