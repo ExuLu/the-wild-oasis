@@ -1,8 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { updateSetting as updateSettingAPI } from '../../services/apiSettings';
 import toast from 'react-hot-toast';
 
-export function useUpdateSetting() {
+import { updateSetting as updateSettingAPI } from '../../services/apiSettings';
+
+export const useUpdateSetting = () => {
   const queryClient = useQueryClient();
 
   const { mutate: updateSetting, isPending: isUpdating } = useMutation({
@@ -16,5 +17,5 @@ export function useUpdateSetting() {
     },
   });
 
-  return { updateSetting, isUpdating };
-}
+  return { isUpdating, updateSetting };
+};
