@@ -1,9 +1,9 @@
-import UpdateUserDataForm from '../features/authentication/UpdateUserDataForm';
-import UpdatePasswordForm from '../features/authentication/UpdatePasswordForm';
 import Heading from '../ui/Heading';
 import Row from '../ui/Row';
+import UpdateUserDataForm from '../features/authentication/UpdateUserDataForm';
+import UpdatePasswordForm from '../features/authentication/UpdatePasswordForm';
 
-function Account() {
+const Account = () => {
   return (
     <>
       <Heading as='h1'>Update your account</Heading>
@@ -19,6 +19,6 @@ function Account() {
       </Row>
     </>
   );
-}
+};
 
 export default Account;
