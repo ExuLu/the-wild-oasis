@@ -1,19 +1,19 @@
 import styled from 'styled-components';
 
+const Error = styled.span`
+  color: var(--color-red-700);
+  font-size: 1.4rem;
+`;
+
 const Label = styled.label`
   font-weight: 500;
 `;
 
-const Error = styled.span`
-  font-size: 1.4rem;
-  color: var(--color-red-700);
-`;
-
 const StyledFormRow = styled.div`
-  display: grid;
   align-items: center;
-  grid-template-columns: 24rem 1fr 1.2fr;
+  display: grid;
   gap: 2.4rem;
+  grid-template-columns: 24rem 1fr 1.2fr;
 
   padding: 1.2rem 0;
 
@@ -31,8 +31,8 @@ const StyledFormRow = styled.div`
 
   &:has(button) {
     display: flex;
-    justify-content: flex-end;
     gap: 1.2rem;
+    justify-content: flex-end;
   }
 `;
 

@@ -1,7 +1,17 @@
 import { Outlet } from 'react-router-dom';
+
 import Header from './Header';
 import Sidebar from './Sidebar';
+
 import styled from 'styled-components';
+
+const Container = styled.div`
+  max-width: 120rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+`;
 
 const Main = styled.main`
   background-color: var(--color-grey-50);
@@ -14,14 +24,6 @@ const StyledAppLayout = styled.div`
   grid-template-columns: 26rem 1fr;
   grid-template-rows: auto 1fr;
   height: 100vh;
-`;
-
-const Container = styled.div`
-  max-width: 120rem;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 3.2rem;
 `;
 
 const AppLayout = () => {

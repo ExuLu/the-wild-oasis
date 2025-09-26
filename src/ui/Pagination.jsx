@@ -1,13 +1,13 @@
-import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
 import { useSearchParams } from 'react-router-dom';
-import styled from 'styled-components';
+import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
+
 import { PAGE_SIZE } from '../utils/globalContstants';
 
-const StyledPagination = styled.div`
-  width: 100%;
+import styled from 'styled-components';
+
+const Buttons = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  gap: 0.6rem;
 `;
 
 const P = styled.p`
@@ -19,24 +19,18 @@ const P = styled.p`
   }
 `;
 
-const Buttons = styled.div`
-  display: flex;
-  gap: 0.6rem;
-`;
-
 const PaginationButton = styled.button`
+  align-items: center;
   background-color: ${(props) =>
     props.active ? ' var(--color-brand-600)' : 'var(--color-grey-50)'};
-  color: ${(props) => (props.active ? ' var(--color-brand-50)' : 'inherit')};
   border: none;
   border-radius: var(--border-radius-sm);
-  font-weight: 500;
-  font-size: 1.4rem;
-
+  color: ${(props) => (props.active ? ' var(--color-brand-50)' : 'inherit')};
   display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 500;
   gap: 0.4rem;
+  justify-content: center;
   padding: 0.6rem 1.2rem;
   transition: all 0.3s;
 
@@ -57,6 +51,13 @@ const PaginationButton = styled.button`
     background-color: var(--color-brand-600);
     color: var(--color-brand-50);
   }
+`;
+
+const StyledPagination = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 `;
 
 const Pagination = ({ count }) => {
@@ -84,13 +85,13 @@ const Pagination = ({ count }) => {
 
   return (
     <StyledPagination>
-      <p>
+      <P>
         Showing <span>{(currentPage - 1) * PAGE_SIZE + 1}</span> to{' '}
         <span>
           {currentPage === pageCount ? count : currentPage * PAGE_SIZE}
         </span>{' '}
         of <span>{count}</span> results
-      </p>
+      </P>
 
       <Buttons>
         <PaginationButton onClick={previousPage} disabled={currentPage === 1}>

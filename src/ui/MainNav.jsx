@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
 import {
   HiOutlineCalendarDays,
   HiOutlineCog6Tooth,
@@ -7,6 +6,8 @@ import {
   HiOutlineHomeModern,
   HiOutlineUsers,
 } from 'react-icons/hi2';
+
+import styled from 'styled-components';
 
 const NavList = styled.ul`
   display: flex;
@@ -17,32 +18,30 @@ const NavList = styled.ul`
 const StyledNavLink = styled(NavLink)`
   &:link,
   &:visited {
-    display: flex;
     align-items: center;
-    gap: 1.2rem;
-
     color: var(--color-grey-600);
+    display: flex;
     font-size: 1.6rem;
     font-weight: 500;
+    gap: 1.2rem;
     padding: 1.2rem 2.4rem;
     transition: all 0.3s;
   }
 
-  /* This works because react-router places the active class on the active NavLink */
   &:hover,
   &:active,
   &.active:link,
   &.active:visited {
-    color: var(--color-grey-800);
     background-color: var(--color-grey-50);
     border-radius: var(--border-radius-sm);
+    color: var(--color-grey-800);
   }
 
   & svg {
-    width: 2.4rem;
-    height: 2.4rem;
     color: var(--color-grey-400);
+    height: 2.4rem;
     transition: all 0.3s;
+    width: 2.4rem;
   }
 
   &:hover svg,

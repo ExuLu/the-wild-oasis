@@ -1,12 +1,13 @@
-import styled from 'styled-components';
 import Button from './Button';
 import Heading from './Heading';
 
+import styled from 'styled-components';
+
 const StyledConfirmDelete = styled.div`
-  width: 40rem;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
+  width: 40rem;
 
   & p {
     color: var(--color-grey-500);
@@ -15,12 +16,12 @@ const StyledConfirmDelete = styled.div`
 
   & div {
     display: flex;
-    justify-content: flex-end;
     gap: 1.2rem;
+    justify-content: flex-end;
   }
 `;
 
-function ConfirmDelete({ resourceName, onConfirm, disabled, onCloseModal }) {
+const ConfirmDelete = ({ resourceName, onConfirm, disabled, onCloseModal }) => {
   return (
     <StyledConfirmDelete>
       <Heading as='h3'>Delete {resourceName}</Heading>
@@ -31,18 +32,18 @@ function ConfirmDelete({ resourceName, onConfirm, disabled, onCloseModal }) {
 
       <div>
         <Button
+          disabled={disabled}
           onClick={onCloseModal}
           variation='secondary'
-          disabled={disabled}
         >
           Cancel
         </Button>
-        <Button onClick={onConfirm} variation='danger' disabled={disabled}>
+        <Button disabled={disabled} onClick={onConfirm} variation='danger'>
           Delete
         </Button>
       </div>
     </StyledConfirmDelete>
   );
-}
+};
 
 export default ConfirmDelete;
