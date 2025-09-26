@@ -15,32 +15,37 @@ import { guests } from './data-guests';
 //   breakfastPrice: 15,
 // };
 
-async function deleteGuests() {
+const deleteGuests = async () => {
   const { error } = await supabase.from('guests').delete().gt('id', 0);
-  if (error) console.log(error.message);
-}
 
-async function deleteCabins() {
+  if (error) console.log(error.message);
+};
+
+const deleteCabins = async () => {
   const { error } = await supabase.from('cabins').delete().gt('id', 0);
-  if (error) console.log(error.message);
-}
 
-async function deleteBookings() {
+  if (error) console.log(error.message);
+};
+
+const deleteBookings = async () => {
   const { error } = await supabase.from('bookings').delete().gt('id', 0);
-  if (error) console.log(error.message);
-}
 
-async function createGuests() {
+  if (error) console.log(error.message);
+};
+
+const createGuests = async () => {
   const { error } = await supabase.from('guests').insert(guests);
-  if (error) console.log(error.message);
-}
 
-async function createCabins() {
+  if (error) console.log(error.message);
+};
+
+const createCabins = async () => {
   const { error } = await supabase.from('cabins').insert(cabins);
-  if (error) console.log(error.message);
-}
 
-async function createBookings() {
+  if (error) console.log(error.message);
+};
+
+const createBookings = async () => {
   // Bookings need a guestID and a cabinId. We can't tell Supabase IDs for each object, it will calculate them on its own. So it might be different for different people, especially after multiple uploads. Therefore, we need to first get all guestIds and cabinIds, and then replace the original IDs in the booking data with the actual ones from the DB
   const { data: guestsIds } = await supabase
     .from('guests')
@@ -94,16 +99,15 @@ async function createBookings() {
     };
   });
 
-  console.log(finalBookings);
-
   const { error } = await supabase.from('bookings').insert(finalBookings);
-  if (error) console.log(error.message);
-}
 
-function Uploader() {
+  if (error) console.log(error.message);
+};
+
+const Uploader = () => {
   const [isLoading, setIsLoading] = useState(false);
 
-  async function uploadAll() {
+  const uploadAll = async () => {
     setIsLoading(true);
     // Bookings need to be deleted FIRST
     await deleteBookings();
@@ -116,39 +120,39 @@ function Uploader() {
     await createBookings();
 
     setIsLoading(false);
-  }
+  };
 
-  async function uploadBookings() {
+  const uploadBookings = async () => {
     setIsLoading(true);
     await deleteBookings();
     await createBookings();
     setIsLoading(false);
-  }
+  };
 
   return (
     <div
       style={{
-        marginTop: 'auto',
         backgroundColor: '#e0e7ff',
-        padding: '8px',
         borderRadius: '5px',
-        textAlign: 'center',
         display: 'flex',
         flexDirection: 'column',
         gap: '8px',
+        marginTop: 'auto',
+        padding: '8px',
+        textAlign: 'center',
       }}
     >
       <h3>SAMPLE DATA</h3>
 
-      <Button onClick={uploadAll} disabled={isLoading}>
+      <Button disabled={isLoading} onClick={uploadAll}>
         Upload ALL
       </Button>
 
-      <Button onClick={uploadBookings} disabled={isLoading}>
+      <Button disabled={isLoading} onClick={uploadBookings}>
         Upload bookings ONLY
       </Button>
     </div>
   );
-}
+};
 
 export default Uploader;
