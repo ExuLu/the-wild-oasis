@@ -9,10 +9,9 @@ const Box = styled.div`
   background-color: var(--color-grey-0);
   border: 1px solid var(--color-grey-100);
   border-radius: var(--border-radius-md);
-
-  padding: 4.8rem;
   flex: 0 1 96rem;
   text-align: center;
+  padding: 4.8rem;
 
   & h1 {
     margin-bottom: 3.2rem;
@@ -20,10 +19,10 @@ const Box = styled.div`
 `;
 
 const StyledPageNotFound = styled.main`
-  height: 100vh;
+  align-items: center;
   background-color: var(--color-grey-50);
   display: flex;
-  align-items: center;
+  height: 100vh;
   justify-content: center;
   padding: 4.8rem;
 `;

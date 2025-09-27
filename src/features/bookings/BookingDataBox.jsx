@@ -14,34 +14,34 @@ import { formatDistanceFromNow, formatCurrency } from '../../utils/helpers';
 import styled from 'styled-components';
 
 const Footer = styled.footer`
-  padding: 1.6rem 4rem;
-  font-size: 1.2rem;
   color: var(--color-grey-500);
+  font-size: 1.2rem;
+  padding: 1.6rem 4rem;
   text-align: right;
 `;
 
 const Guest = styled.div`
-  display: flex;
   align-items: center;
+  color: var(--color-grey-500);
+  display: flex;
   gap: 1.2rem;
   margin-bottom: 1.6rem;
-  color: var(--color-grey-500);
 
   & p:first-of-type {
-    font-weight: 500;
     color: var(--color-grey-700);
+    font-weight: 500;
   }
 `;
 
 const Header = styled.header`
+  align-items: center;
   background-color: var(--color-brand-500);
-  padding: 2rem 4rem;
   color: #e0e7ff;
+  display: flex;
   font-size: 1.8rem;
   font-weight: 500;
-  display: flex;
-  align-items: center;
   justify-content: space-between;
+  padding: 2rem 4rem;
 
   svg {
     height: 3.2rem;
@@ -49,11 +49,11 @@ const Header = styled.header`
   }
 
   & div:first-child {
-    display: flex;
     align-items: center;
-    gap: 1.6rem;
-    font-weight: 600;
+    display: flex;
     font-size: 1.8rem;
+    font-weight: 600;
+    gap: 1.6rem;
   }
 
   & span {
@@ -64,28 +64,27 @@ const Header = styled.header`
 `;
 
 const Price = styled.div`
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 1.6rem 3.2rem;
-  border-radius: var(--border-radius-sm);
-  margin-top: 2.4rem;
-
   background-color: ${(props) =>
     props['data-paid'] ? 'var(--color-green-100)' : 'var(--color-yellow-100)'};
+  border-radius: var(--border-radius-sm);
   color: ${(props) =>
     props['data-paid'] ? 'var(--color-green-700)' : 'var(--color-yellow-700)'};
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2.4rem;
+  padding: 1.6rem 3.2rem;
 
   & p:last-child {
-    text-transform: uppercase;
     font-size: 1.4rem;
     font-weight: 600;
+    text-transform: uppercase;
   }
 
   svg {
+    color: currentColor !important;
     height: 2.4rem;
     width: 2.4rem;
-    color: currentColor !important;
   }
 `;
 

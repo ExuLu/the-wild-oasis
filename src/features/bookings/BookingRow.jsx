@@ -27,10 +27,10 @@ const Amount = styled.div`
 `;
 
 const Cabin = styled.div`
-  font-size: 1.6rem;
-  font-weight: 600;
   color: var(--color-grey-600);
   font-family: 'Sono';
+  font-size: 1.6rem;
+  font-weight: 600;
 `;
 
 const Stacked = styled.div`

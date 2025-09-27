@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import BookingDataBox from './BookingDataBox';
 import Button from '../../ui/Button';
 import ButtonGroup from '../../ui/ButtonGroup';
@@ -14,14 +16,13 @@ import { useBooking } from './useBooking';
 import { useCheckout } from '../check-in-out/useCheckout';
 import { useDeleteBooking } from './useDeleteBooking';
 import { useMoveBack } from '../../hooks/useMoveBack';
-import { useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components';
 
 const HeadingGroup = styled.div`
+  align-items: center;
   display: flex;
   gap: 2.4rem;
-  align-items: center;
 `;
 
 const BookingDetail = () => {
